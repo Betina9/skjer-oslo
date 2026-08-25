@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Event } from "../types/Event";
 import { categoryStyles } from "../data/categories";
 
@@ -7,6 +8,7 @@ interface EventCardProps {
 
 function EventCard({ event }: EventCardProps) {
   const category = categoryStyles[event.category];
+  const [isSaved, setIsSaved] = useState(false);
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
@@ -19,10 +21,17 @@ function EventCard({ event }: EventCardProps) {
 
         <button
           type="button"
-          aria-label={`Lagre ${event.title}`}
-          className="absolute right-3 top-3 rounded-full bg-white/90 px-3 py-2 text-lg shadow-sm backdrop-blur hover:bg-white"
+          onClick={() => setIsSaved(!isSaved)}
+          aria-label={
+            isSaved
+              ? `Fjern ${event.title} fra mine planer`
+              : `Lagre ${event.title} i mine planer`
+          }
+          className={`absolute right-3 top-3 cursor-pointer rounded-full bg-white/90 px-3 py-2 text-lg shadow-sm backdrop-blur hover:bg-white ${
+            isSaved ? "text-red-600" : "text-gray-700"
+          }`}
         >
-          ♡
+          {isSaved ? "♥" : "♡"}
         </button>
       </div>
 

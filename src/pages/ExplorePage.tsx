@@ -1,7 +1,16 @@
+import { useState } from "react";
 import EventCard from "../components/EventCard";
 import { events } from "../data/events";
+import type { EventCategory } from "../types/Event";
 
 function ExplorePage() {
+  const [selectedCategory, setSelectedCategory] = useState<
+    EventCategory | "all"
+  >("all");
+  const filteredEvents =
+    selectedCategory === "all"
+      ? events
+      : events.filter((event) => event.category === selectedCategory);
   return (
     <main>
       <section className="bg-white">
@@ -34,23 +43,38 @@ function ExplorePage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <button className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white">
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
+            >
               Alle
             </button>
 
-            <button className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white">
+            <button
+              onClick={() => setSelectedCategory("music")}
+              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
+            >
               Musikk
             </button>
 
-            <button className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white">
+            <button
+              onClick={() => setSelectedCategory("food")}
+              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
+            >
               Mat og drikke
             </button>
 
-            <button className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white">
+            <button
+              onClick={() => setSelectedCategory("culture")}
+              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
+            >
               Kultur
             </button>
 
-            <button className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white">
+            <button
+              onClick={() => setSelectedCategory("activity")}
+              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
+            >
               Aktivitet
             </button>
           </div>
@@ -69,7 +93,7 @@ function ExplorePage() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {events.map((event) => (
+          {filteredEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}
         </div>
