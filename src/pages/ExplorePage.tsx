@@ -2,6 +2,8 @@ import { useState } from "react";
 import EventCard from "../components/EventCard";
 import { events } from "../data/events";
 import type { EventCategory } from "../types/Event";
+import CategoryButton from "../components/CategoryButton";
+import { LayoutGrid, Music, Utensils, Palette, Trees } from "lucide-react";
 
 function ExplorePage() {
   const [selectedCategory, setSelectedCategory] = useState<
@@ -43,40 +45,45 @@ function ExplorePage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <button
+            <CategoryButton
+              label="Alle"
+              icon={LayoutGrid}
+              isActive={selectedCategory === "all"}
               onClick={() => setSelectedCategory("all")}
-              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
-            >
-              Alle
-            </button>
+              color="bg-gray-950 text-white"
+            />
 
-            <button
+            <CategoryButton
+              label="Musikk"
+              icon={Music}
+              isActive={selectedCategory === "music"}
               onClick={() => setSelectedCategory("music")}
-              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
-            >
-              Musikk
-            </button>
+              color="bg-pink-100 text-pink-800"
+            />
 
-            <button
+            <CategoryButton
+              label="Mat og drikke"
+              icon={Utensils}
+              isActive={selectedCategory === "food"}
               onClick={() => setSelectedCategory("food")}
-              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
-            >
-              Mat og drikke
-            </button>
+              color="bg-orange-100 text-orange-800"
+            />
 
-            <button
+            <CategoryButton
+              label="Kultur"
+              icon={Palette}
+              isActive={selectedCategory === "culture"}
               onClick={() => setSelectedCategory("culture")}
-              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
-            >
-              Kultur
-            </button>
+              color="bg-purple-100 text-purple-800"
+            />
 
-            <button
+            <CategoryButton
+              label="Aktivitet"
+              icon={Trees}
+              isActive={selectedCategory === "activity"}
               onClick={() => setSelectedCategory("activity")}
-              className="rounded-full bg-gray-950 px-5 py-2.5 text-sm font-medium text-white"
-            >
-              Aktivitet
-            </button>
+              color="bg-green-100 text-green-800"
+            />
           </div>
         </div>
       </section>

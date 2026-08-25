@@ -1,4 +1,7 @@
 import type { Event } from "../types/Event";
+import rockefellerImage from "../assets/rockefeller.png";
+import youngstorgetImage from "../assets/youngstorget.png";
+import munchImage from "../assets/munch.png";
 
 export const events: Event[] = [
   {
@@ -9,7 +12,7 @@ export const events: Event[] = [
     date: "2026-08-29",
     time: "20:00",
     price: 450,
-    image: "/images/concert.jpg",
+    image: rockefellerImage,
   },
   {
     id: 2,
@@ -19,7 +22,7 @@ export const events: Event[] = [
     date: "2026-08-30",
     time: "12:00",
     price: 0,
-    image: "/images/street-food.jpg",
+    image: youngstorgetImage,
   },
   {
     id: 3,
@@ -29,6 +32,6 @@ export const events: Event[] = [
     date: "2026-08-30",
     time: "10:00",
     price: 180,
-    image: "/images/munch.jpg",
+    image: munchImage,
   },
 ];
