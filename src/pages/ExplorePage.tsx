@@ -1,3 +1,6 @@
+import EventCard from "../components/EventCard";
+import { events } from "../data/events";
+
 function ExplorePage() {
   return (
     <main>
@@ -51,6 +54,24 @@ function ExplorePage() {
               Aktivitet
             </button>
           </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-16">
+        <div className="mb-6 flex items-center justify-between">
+          <h2 className="text-2xl font-bold text-gray-950">
+            Populært denne helgen
+          </h2>
+
+          <button className="text-sm font-medium text-gray-600 hover:text-gray-950">
+            Se alle
+          </button>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
         </div>
       </section>
     </main>
