@@ -5,6 +5,39 @@ import type { EventCategory } from "../types/Event";
 import CategoryButton from "../components/CategoryButton";
 import { LayoutGrid, Music, Utensils, Palette, Trees } from "lucide-react";
 
+const categories = [
+  {
+    label: "Alle",
+    value: "all",
+    color: "bg-gray-950 text-white",
+    icon: LayoutGrid,
+  },
+  {
+    label: "Musikk",
+    value: "music",
+    color: "bg-pink-100 text-pink-800",
+    icon: Music,
+  },
+  {
+    label: "Mat og drikke",
+    value: "food",
+    color: "bg-orange-100 text-orange-800",
+    icon: Utensils,
+  },
+  {
+    label: "Kultur",
+    value: "culture",
+    color: "bg-purple-100 text-purple-800",
+    icon: Palette,
+  },
+  {
+    label: "Aktivitet",
+    value: "activity",
+    color: "bg-green-100 text-green-800",
+    icon: Trees,
+  },
+];
+
 function ExplorePage() {
   const [selectedCategory, setSelectedCategory] = useState<
     EventCategory | "all"
@@ -45,45 +78,18 @@ function ExplorePage() {
           </div>
 
           <div className="mt-6 flex flex-wrap gap-3">
-            <CategoryButton
-              label="Alle"
-              icon={LayoutGrid}
-              isActive={selectedCategory === "all"}
-              onClick={() => setSelectedCategory("all")}
-              color="bg-gray-950 text-white"
-            />
-
-            <CategoryButton
-              label="Musikk"
-              icon={Music}
-              isActive={selectedCategory === "music"}
-              onClick={() => setSelectedCategory("music")}
-              color="bg-pink-100 text-pink-800"
-            />
-
-            <CategoryButton
-              label="Mat og drikke"
-              icon={Utensils}
-              isActive={selectedCategory === "food"}
-              onClick={() => setSelectedCategory("food")}
-              color="bg-orange-100 text-orange-800"
-            />
-
-            <CategoryButton
-              label="Kultur"
-              icon={Palette}
-              isActive={selectedCategory === "culture"}
-              onClick={() => setSelectedCategory("culture")}
-              color="bg-purple-100 text-purple-800"
-            />
-
-            <CategoryButton
-              label="Aktivitet"
-              icon={Trees}
-              isActive={selectedCategory === "activity"}
-              onClick={() => setSelectedCategory("activity")}
-              color="bg-green-100 text-green-800"
-            />
+            {categories.map((category) => (
+              <CategoryButton
+                key={category.value}
+                label={category.label}
+                icon={category.icon}
+                color={category.color}
+                isActive={selectedCategory === category.value}
+                onClick={() =>
+                  setSelectedCategory(category.value as EventCategory | "all")
+                }
+              />
+            ))}
           </div>
         </div>
       </section>
