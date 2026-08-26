@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import type { Event } from "../types/Event";
 import { categoryStyles } from "../data/categories";
@@ -12,12 +13,20 @@ function EventCard({ event }: EventCardProps) {
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
-      <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
-        <img
-          src={event.image}
-          alt={event.title}
-          className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-        />
+      <div className="relative">
+        <Link
+          to={`/events/${event.id}`}
+          className="block"
+          aria-label={`Se detaljer for ${event.title}`}
+        >
+          <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+            <img
+              src={event.image}
+              alt={event.title}
+              className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
+            />
+          </div>
+        </Link>
 
         <button
           type="button"
