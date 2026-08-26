@@ -42,10 +42,19 @@ function ExplorePage() {
   const [selectedCategory, setSelectedCategory] = useState<
     EventCategory | "all"
   >("all");
-  const filteredEvents =
-    selectedCategory === "all"
-      ? events
-      : events.filter((event) => event.category === selectedCategory);
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const filteredEvents = events.filter((event) => {
+    const matchesCategory =
+      selectedCategory === "all" || event.category === selectedCategory;
+
+    const matchesSearch =
+      event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      event.venue.toLowerCase().includes(searchTerm.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
+
   return (
     <main>
       <section className="bg-white">
@@ -73,6 +82,8 @@ function ExplorePage() {
               id="event-search"
               type="search"
               placeholder="Søk etter arrangement eller aktivitet..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
               className="w-full rounded-xl border border-gray-300 bg-white px-5 py-4 text-gray-900 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
             />
           </div>
@@ -105,11 +116,23 @@ function ExplorePage() {
           </button>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filteredEvents.map((event) => (
-            <EventCard key={event.id} event={event} />
-          ))}
-        </div>
+        {filteredEvents.length > 0 ? (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-12 text-center">
+            <h3 className="text-lg font-semibold text-gray-950">
+              Ingen arrangementer funnet
+            </h3>
+
+            <p className="mt-2 text-sm text-gray-600">
+              Prøv et annet søk eller velg en annen kategori.
+            </p>
+          </div>
+        )}
       </section>
     </main>
   );
