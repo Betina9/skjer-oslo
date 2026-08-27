@@ -5,8 +5,12 @@ export interface Event {
   title: string;
   category: EventCategory;
   venue: string;
+  address: string;
   date: string;
   time: string;
   price: number;
   image: string;
+  description: string;
+  accessibility: string;
+  ticketUrl?: "https://example.com";
 }

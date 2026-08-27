@@ -63,6 +63,33 @@ function EventDetailsPage() {
             <span>{event.venue}</span>
           </div>
         </div>
+
+        <div className="mt-8 max-w-3xl">
+          <h2 className="text-xl font-semibold text-gray-950">
+            Om arrangementet
+          </h2>
+
+          <p className="mt-3 leading-7 text-gray-600">{event.description}</p>
+        </div>
+
+        <div className="mt-8 space-y-6">
+          <div>
+            <h2 className="font-semibold text-gray-950">
+              Praktisk informasjon
+            </h2>
+
+            <p className="mt-2 text-sm text-gray-600">{event.address}</p>
+          </div>
+
+          <div>
+            <h2 className="font-semibold text-gray-950">Tilgjengelighet</h2>
+
+            <p className="mt-2 text-sm leading-6 text-gray-600">
+              {event.accessibility}
+            </p>
+          </div>
+        </div>
+
         <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-6">
           <div>
             <p className="text-sm text-gray-500">Pris</p>
@@ -72,12 +99,16 @@ function EventDetailsPage() {
             </p>
           </div>
 
-          <button
-            type="button"
-            className="cursor-pointer rounded-xl bg-red-600 px-6 py-3 font-semibold text-white transition hover:bg-red-700"
-          >
-            Kjøp billett
-          </button>
+          {event.price > 0 && event.ticketUrl && (
+            <a
+              href={event.ticketUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex rounded-xl bg-red-600 px-6 py-3 font-semibold text-white transition hover:bg-red-700"
+            >
+              Kjøp billett
+            </a>
+          )}
         </div>
       </div>
       <p className="mt-4 text-gray-600">{event?.venue}</p>
