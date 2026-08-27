@@ -1,12 +1,20 @@
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import ExplorePage from "./pages/ExplorePage";
 import SavedPage from "./pages/SavedPage";
 import EventDetailsPage from "./pages/EventDetailsPage";
 
 function App() {
-  const [savedEventIds, setSavedEventIds] = useState<number[]>([]);
+  const [savedEventIds, setSavedEventIds] = useState<number[]>(() => {
+    const saved = localStorage.getItem("savedEvents");
+
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("savedEvents", JSON.stringify(savedEventIds));
+  }, [savedEventIds]);
 
   const toggleSavedEvent = (eventId: number) => {
     setSavedEventIds((currentIds) =>
