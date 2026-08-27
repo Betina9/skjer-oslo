@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, CalendarDays, Clock, MapPin } from "lucide-react";
 import { events } from "../data/events";
 import { categoryStyles } from "../data/categories";
+import { formatDate } from "../utils/formatDate";
 
 function EventDetailsPage() {
   const { id } = useParams();
@@ -49,7 +50,7 @@ function EventDetailsPage() {
         <div className="mt-6 flex flex-wrap gap-6 text-gray-600">
           <div className="flex items-center gap-2">
             <CalendarDays size={20} />
-            <span>{event.date}</span>
+            <span>{formatDate(event.date)}</span>
           </div>
 
           <div className="flex items-center gap-2">

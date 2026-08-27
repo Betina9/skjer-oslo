@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import type { Event } from "../types/Event";
 import { categoryStyles } from "../data/categories";
+import { formatDate } from "../utils/formatDate";
 
 interface EventCardProps {
   event: Event;
@@ -59,7 +60,9 @@ function EventCard({ event, isSaved, onToggleSaved }: EventCardProps) {
 
         <div className="mt-5 flex items-end justify-between gap-4">
           <div>
-            <p className="text-sm font-medium text-gray-900">{event.date}</p>
+            <p className="text-sm font-medium text-gray-900">
+              {formatDate(event.date)}
+            </p>
 
             <p className="text-sm text-gray-500">Kl. {event.time}</p>
           </div>
