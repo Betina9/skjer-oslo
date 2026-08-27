@@ -38,12 +38,18 @@ const categories = [
   },
 ];
 
-function ExplorePage() {
+interface ExplorePageProps {
+  savedEventIds: number[];
+  onToggleSaved: (eventId: number) => void;
+}
+
+function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
   const [selectedCategory, setSelectedCategory] = useState<
     EventCategory | "all"
   >("all");
 
   const [searchTerm, setSearchTerm] = useState("");
+
   const filteredEvents = events.filter((event) => {
     const matchesCategory =
       selectedCategory === "all" || event.category === selectedCategory;
@@ -119,7 +125,12 @@ function ExplorePage() {
         {filteredEvents.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredEvents.map((event) => (
-              <EventCard key={event.id} event={event} />
+              <EventCard
+                key={event.id}
+                event={event}
+                isSaved={savedEventIds.includes(event.id)}
+                onToggleSaved={onToggleSaved}
+              />
             ))}
           </div>
         ) : (

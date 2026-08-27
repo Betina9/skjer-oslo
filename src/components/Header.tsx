@@ -11,18 +11,21 @@ function Header() {
         <nav>
           <ul className="flex items-center gap-8">
             <li>
-              <a
-                href="/"
+              <Link
+                to="/"
                 className="text-sm font-medium text-gray-700 hover:text-gray-950"
               >
                 Utforsk
-              </a>
+              </Link>
             </li>
 
             <li>
-              <a href="/saved" className="text">
+              <Link
+                to="/saved"
+                className="text-sm font-medium text-gray-700 hover:text-gray-950"
+              >
                 Mine planer
-              </a>
+              </Link>
             </li>
           </ul>
         </nav>

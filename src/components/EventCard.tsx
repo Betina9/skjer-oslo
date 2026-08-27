@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import type { Event } from "../types/Event";
 import { categoryStyles } from "../data/categories";
 
 interface EventCardProps {
   event: Event;
+  isSaved: boolean;
+  onToggleSaved: (eventId: number) => void;
 }
 
-function EventCard({ event }: EventCardProps) {
+function EventCard({ event, isSaved, onToggleSaved }: EventCardProps) {
   const category = categoryStyles[event.category];
-  const [isSaved, setIsSaved] = useState(false);
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
@@ -30,7 +30,7 @@ function EventCard({ event }: EventCardProps) {
 
         <button
           type="button"
-          onClick={() => setIsSaved(!isSaved)}
+          onClick={() => onToggleSaved(event.id)}
           aria-label={
             isSaved
               ? `Fjern ${event.title} fra mine planer`
