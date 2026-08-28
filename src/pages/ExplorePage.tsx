@@ -3,7 +3,15 @@ import EventCard from "../components/EventCard";
 import { events } from "../data/events";
 import type { EventCategory } from "../types/Event";
 import CategoryButton from "../components/CategoryButton";
-import { LayoutGrid, Music, Utensils, Palette, Trees } from "lucide-react";
+import heroImage from "../assets/Oslo_bilde.png";
+import {
+  LayoutGrid,
+  Music,
+  Utensils,
+  Palette,
+  Trees,
+  Search,
+} from "lucide-react";
 
 const categories = [
   {
@@ -63,50 +71,65 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
 
   return (
     <main>
-      <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-6 py-16">
-          <div className="max-w-2xl">
-            <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-red-600">
-              Oppdag Oslo
-            </p>
+      <section
+        className="relative overflow-hidden rounded-3xl bg-cover bg-center"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      >
+        <div className="absolute inset-0 bg-black/50" />
 
-            <h1 className="text-4xl font-bold tracking-tight text-gray-950 sm:text-5xl">
-              Hva skjer i Oslo?
-            </h1>
+        <div className="relative z-10">
+          <div className="mx-auto max-w-7xl px-6 py-16">
+            <div className="max-w-2xl">
+              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-red-600">
+                Oppdag Oslo
+              </p>
 
-            <p className="mt-4 text-lg text-gray-600">
-              Finn konserter, kultur, mat og aktiviteter i byen.
-            </p>
-          </div>
+              <h1 className="text-4xl font-bold tracking-tight text-gray-950 sm:text-5xl">
+                Hva skjer i Oslo?
+              </h1>
 
-          <div className="mt-8 max-w-2xl">
-            <label htmlFor="event-search" className="sr-only">
-              Søk etter arrangementer
-            </label>
+              <p className="mt-4 text-lg text-gray-600">
+                Finn konserter, kultur, mat og aktiviteter i byen.
+              </p>
+            </div>
 
-            <input
-              id="event-search"
-              type="search"
-              placeholder="Søk etter arrangement eller aktivitet..."
-              value={searchTerm}
-              onChange={(event) => setSearchTerm(event.target.value)}
-              className="w-full rounded-xl border border-gray-300 bg-white px-5 py-4 text-gray-900 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
-            />
-          </div>
+            <div className="mt-8 max-w-2xl">
+              <label htmlFor="event-search" className="sr-only">
+                Søk etter arrangementer
+              </label>
 
-          <div className="mt-6 flex flex-wrap gap-3">
-            {categories.map((category) => (
-              <CategoryButton
-                key={category.value}
-                label={category.label}
-                icon={category.icon}
-                color={category.color}
-                isActive={selectedCategory === category.value}
-                onClick={() =>
-                  setSelectedCategory(category.value as EventCategory | "all")
-                }
-              />
-            ))}
+              <div className="relative">
+                <Search
+                  size={20}
+                  aria-hidden="true"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"
+                />
+
+                <input
+                  id="event-search"
+                  type="search"
+                  placeholder="Søk etter arrangement eller aktivitet..."
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
+                  className="w-full rounded-xl border border-gray-300 bg-white py-4 pl-12 pr-5 text-gray-900 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                />
+              </div>
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              {categories.map((category) => (
+                <CategoryButton
+                  key={category.value}
+                  label={category.label}
+                  icon={category.icon}
+                  color={category.color}
+                  isActive={selectedCategory === category.value}
+                  onClick={() =>
+                    setSelectedCategory(category.value as EventCategory | "all")
+                  }
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
