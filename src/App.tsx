@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import ExplorePage from "./pages/ExplorePage";
 import SavedPage from "./pages/SavedPage";
 import EventDetailsPage from "./pages/EventDetailsPage";
+import EventsPage from "./pages/EventsPage";
 
 function App() {
   const [savedEventIds, setSavedEventIds] = useState<number[]>(() => {
@@ -47,6 +48,15 @@ function App() {
           }
         />
         <Route path="/events/:id" element={<EventDetailsPage />} />
+        <Route
+          path="/events"
+          element={
+            <EventsPage
+              savedEventIds={savedEventIds}
+              onToggleSaved={toggleSavedEvent}
+            />
+          }
+        />
       </Routes>
     </>
   );

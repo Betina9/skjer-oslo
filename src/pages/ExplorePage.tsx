@@ -4,6 +4,7 @@ import { events } from "../data/events";
 import type { EventCategory } from "../types/Event";
 import CategoryButton from "../components/CategoryButton";
 import heroImage from "../assets/Oslo_bilde.png";
+import { Link } from "react-router-dom";
 import {
   LayoutGrid,
   Music,
@@ -77,23 +78,23 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
       >
         <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10">
+        <div className="relative z-10 px-6 py-12 sm:px-10 sm:py-16">
           <div className="mx-auto max-w-7xl px-6 py-16">
             <div className="max-w-2xl">
-              <p className="mb-3 text-sm font-semibold uppercase tracking-wide text-red-600">
+              <p className="text-sm font-semibold uppercase tracking-wide text-red-300">
                 Oppdag Oslo
               </p>
 
-              <h1 className="text-4xl font-bold tracking-tight text-gray-950 sm:text-5xl">
+              <h1 className="mt-3 text-4xl font-bold tracking-tight text-white sm:text-5xl">
                 Hva skjer i Oslo?
               </h1>
 
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mt-4 max-w-2xl text-lg text-gray-200">
                 Finn konserter, kultur, mat og aktiviteter i byen.
               </p>
             </div>
 
-            <div className="mt-8 max-w-2xl">
+            <div className="mt-8 max-w-2xl rounded-2xl bg-white/95 p-2 shadow-lg backdrop-blur">
               <label htmlFor="event-search" className="sr-only">
                 Søk etter arrangementer
               </label>
@@ -111,7 +112,7 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
                   placeholder="Søk etter arrangement eller aktivitet..."
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
-                  className="w-full rounded-xl border border-gray-300 bg-white py-4 pl-12 pr-5 text-gray-900 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                  className="w-full rounded-xl border border-gray-200 bg-white py-4 pl-12 pr-5 text-gray-900 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
                 />
               </div>
             </div>
@@ -134,20 +135,23 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-6 pb-16">
+      <section className="mx-auto max-w-7xl px-6 pt-12 pb-16">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold text-gray-950">
             Populært denne helgen
           </h2>
 
-          <button className="text-sm font-medium text-gray-600 hover:text-gray-950">
+          <Link
+            to="/events"
+            className="font-medium text-red-600 transition hover:text-red-700"
+          >
             Se alle
-          </button>
+          </Link>
         </div>
 
         {filteredEvents.length > 0 ? (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredEvents.map((event) => (
+            {filteredEvents.slice(0, 3).map((event) => (
               <EventCard
                 key={event.id}
                 event={event}
