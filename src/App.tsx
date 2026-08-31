@@ -26,7 +26,7 @@ function App() {
   };
   return (
     <>
-      <Header />
+      <Header savedCount={savedEventIds.length} />
 
       <Routes>
         <Route
