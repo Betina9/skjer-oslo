@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 interface HeaderProps {
   savedCount: number;
@@ -12,27 +12,40 @@ function Header({ savedCount }: HeaderProps) {
           to="/"
           className="rounded-md text-xl font-bold text-gray-900 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
         >
-          SkjerOslo
+          Skjer<span className="text-red-600">Oslo</span>
         </Link>
 
         <nav>
           <ul className="flex items-center gap-8">
             <li>
-              <Link
+              <NavLink
                 to="/"
-                className="text-sm font-medium text-gray-700 hover:text-gray-950 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                end
+                className={({ isActive }) =>
+                  `border-b-2 pb-1 text-sm font-medium transition hover:border-red-500 hover:text-gray-950 focus-visible:outline-none focus-visible:border-red-500 ${
+                    isActive
+                      ? "border-red-500 text-gray-950"
+                      : "border-transparent text-gray-700"
+                  }`
+                }
               >
                 Utforsk
-              </Link>
+              </NavLink>
             </li>
 
             <li>
-              <Link
+              <NavLink
                 to="/saved"
-                className="text-sm font-medium text-gray-700 hover:text-gray-950 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                className={({ isActive }) =>
+                  `border-b-2 pb-1 text-sm font-medium transition hover:border-red-500 hover:text-gray-950 focus-visible:outline-none focus-visible:border-red-500 ${
+                    isActive
+                      ? "border-red-500 text-gray-950"
+                      : "border-transparent text-gray-700"
+                  }`
+                }
               >
                 Mine planer {savedCount > 0 && `(${savedCount})`}
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
