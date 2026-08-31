@@ -35,15 +35,15 @@ function EventDetailsPage({
     <main className="mx-auto max-w-7xl px-6 py-10">
       <Link
         to="/"
-        className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-gray600 transition hover:text-gray-950"
+        className="mb-6 inline-flex items-center gap-2 rounded-md text-sm font-medium text-gray-600 transition hover:text-gray-950 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
       >
-        <ArrowLeft size={18} />
+        <ArrowLeft size={18} aria-hidden="true" />
         Tilbake til arrangementer
       </Link>
       <div className="overflow-hidden rounded-2xl">
         <img
           src={event.image}
-          alt={event.title}
+          alt=""
           className="h-[420px] w-full object-cover"
         />
       </div>
@@ -61,7 +61,12 @@ function EventDetailsPage({
           type="button"
           onClick={() => onToggleSaved(event.id)}
           aria-pressed={isSaved}
-          className={`mt-4 inline-flex cursor-pointer rounded-xl border px-4 py-2 text-sm font-semibold transition ${
+          aria-label={
+            isSaved
+              ? `Fjern ${event.title} fra Mine planer`
+              : `Lagre ${event.title} i Mine planer`
+          }
+          className={`mt-4 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
             isSaved
               ? "border-red-200 bg-red-50 text-red-600"
               : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
@@ -72,21 +77,22 @@ function EventDetailsPage({
             fill={isSaved ? "currentColor" : "none"}
             aria-hidden="true"
           />
+          {isSaved ? "Lagret" : "Lagre"}
         </button>
 
         <div className="mt-6 flex flex-wrap gap-6 text-gray-600">
           <div className="flex items-center gap-2">
-            <CalendarDays size={20} />
+            <CalendarDays size={20} aria-hidden="true" />
             <span>{formatDate(event.date)}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <Clock size={20} />
+            <Clock size={20} aria-hidden="true" />
             <span>Kl. {event.time}</span>
           </div>
 
           <div className="flex items-center gap-2">
-            <MapPin size={20} />
+            <MapPin size={20} aria-hidden="true" />
             <span>{event.venue}</span>
           </div>
         </div>
@@ -117,7 +123,7 @@ function EventDetailsPage({
           </div>
         </div>
 
-        <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-6">
+        <div className="mt-10 flex flex-col gap-5 border-t border-gray-200 pt-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-gray-500">Pris</p>
 
@@ -131,9 +137,10 @@ function EventDetailsPage({
               href={event.ticketUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex rounded-xl bg-red-600 px-6 py-3 font-semibold text-white transition hover:bg-red-700"
+              className="inline-flex w-full justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
             >
               Kjøp billett
+              <span className="sr-only"> (åpnes i ny fane)</span>
             </a>
           )}
         </div>

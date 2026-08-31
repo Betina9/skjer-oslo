@@ -65,7 +65,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
           Finn konserter, kultur, mat og aktiviteter i Oslo.
         </p>
 
-        <div>
+        <div className="relative mt-6">
           <Search
             size={20}
             aria-hidden="true"
@@ -92,11 +92,12 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
         <div className="mt-6 flex flex-wrap gap-3">
           <button
             type="button"
+            aria-pressed={selectedCategory === "all"}
             onClick={() => {
               setSelectedCategory("all");
               setCurrentPage(1);
             }}
-            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition ${
+            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
               selectedCategory === "all"
                 ? "bg-gray-950 text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -109,11 +110,12 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
             <button
               key={category}
               type="button"
+              aria-pressed={selectedCategory === category}
               onClick={() => {
                 setSelectedCategory(category as EventCategory);
                 setCurrentPage(1);
               }}
-              className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition ${
+              className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
                 selectedCategory === category
                   ? style.className
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -136,7 +138,10 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
             ))}
           </div>
         ) : (
-          <div className="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-12 text-center">
+          <div
+            role="status"
+            className="rounded-2xl border border-gray-200 bg-gray-50 px-6 py-12 text-center"
+          >
             <h2 className="text-xl font-semibold text-gray-950">
               Ingen arrangementer funnet
             </h2>
@@ -147,8 +152,9 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
         <div className="mt-10 flex items-center justify-center gap-4">
           <button
             type="button"
-            onClick={() => setCurrentPage((page) => Math.max(page - 1, 1))}
-            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+            disabled={currentPage === 1}
+            onClick={() => goToPage(Math.max(currentPage - 1, 1))}
+            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
           >
             Forrige
           </button>
@@ -161,7 +167,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
                 onClick={() => goToPage(page)}
                 aria-label={`Gå til side ${page}`}
                 aria-current={currentPage === page ? "page" : undefined}
-                className={`h-10 min-w-10 cursor-pointer rounded-lg px-3 text-sm font-medium transition ${
+                className={`h-10 min-w-10 cursor-pointer rounded-lg px-3 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
                   currentPage === page
                     ? "bg-red-600 text-white"
                     : "text-gray-700 hover:bg-gray-100"
@@ -174,8 +180,9 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
 
           <button
             type="button"
+            disabled={currentPage === totalPages}
             onClick={() => goToPage(Math.min(currentPage + 1, totalPages))}
-            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
           >
             Neste
           </button>

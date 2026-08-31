@@ -13,17 +13,17 @@ function EventCard({ event, isSaved, onToggleSaved }: EventCardProps) {
   const category = categoryStyles[event.category];
 
   return (
-    <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+    <article className="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md has-[.event-link:focus-visible]:ring-4 has-[.event-link:focus-visible]:ring-red-500 has-[.event-link:focus-visible]:ring-offset-2">
       <div className="relative">
         <Link
           to={`/events/${event.id}`}
-          className="block"
+          className="event-link block focus:outline-none"
           aria-label={`Se detaljer for ${event.title}`}
         >
           <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
             <img
               src={event.image}
-              alt={event.title}
+              alt=""
               className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
             />
           </div>
@@ -31,20 +31,20 @@ function EventCard({ event, isSaved, onToggleSaved }: EventCardProps) {
 
         <button
           type="button"
+          aria-pressed={isSaved}
           onClick={() => onToggleSaved(event.id)}
           aria-label={
             isSaved
               ? `Fjern ${event.title} fra mine planer`
               : `Lagre ${event.title} i mine planer`
           }
-          className={`absolute right-3 top-3 cursor-pointer rounded-full bg-white/90 px-3 py-2 text-lg shadow-sm backdrop-blur hover:bg-white ${
+          className={`absolute right-3 top-3 cursor-pointer rounded-full bg-white/90 px-3 py-2 text-lg shadow-sm backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
             isSaved ? "text-red-600" : "text-gray-700"
           }`}
         >
           {isSaved ? "♥" : "♡"}
         </button>
       </div>
-
       <div className="p-5">
         <span
           className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${category.className}`}
