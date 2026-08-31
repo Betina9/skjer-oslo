@@ -1,10 +1,18 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, CalendarDays, Clock, MapPin } from "lucide-react";
+import { ArrowLeft, CalendarDays, Clock, MapPin, Heart } from "lucide-react";
 import { events } from "../data/events";
 import { categoryStyles } from "../data/categories";
 import { formatDate } from "../utils/formatDate";
 
-function EventDetailsPage() {
+interface EventDetailsPageProps {
+  savedEventIds: number[];
+  onToggleSaved: (eventId: number) => void;
+}
+
+function EventDetailsPage({
+  savedEventIds,
+  onToggleSaved,
+}: EventDetailsPageProps) {
   const { id } = useParams();
 
   const event = events.find((event) => event.id === Number(id));
@@ -18,6 +26,8 @@ function EventDetailsPage() {
       </main>
     );
   }
+
+  const isSaved = savedEventIds.includes(event.id);
 
   const category = categoryStyles[event.category];
 
@@ -46,6 +56,23 @@ function EventDetailsPage() {
         </span>
 
         <h1 className="text-3xl font-bold text-gray-950">{event.title}</h1>
+
+        <button
+          type="button"
+          onClick={() => onToggleSaved(event.id)}
+          aria-pressed={isSaved}
+          className={`mt-4 inline-flex cursor-pointer rounded-xl border px-4 py-2 text-sm font-semibold transition ${
+            isSaved
+              ? "border-red-200 bg-red-50 text-red-600"
+              : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+          }`}
+        >
+          <Heart
+            size={18}
+            fill={isSaved ? "currentColor" : "none"}
+            aria-hidden="true"
+          />
+        </button>
 
         <div className="mt-6 flex flex-wrap gap-6 text-gray-600">
           <div className="flex items-center gap-2">
@@ -111,7 +138,6 @@ function EventDetailsPage() {
           )}
         </div>
       </div>
-      <p className="mt-4 text-gray-600">{event?.venue}</p>
     </main>
   );
 }

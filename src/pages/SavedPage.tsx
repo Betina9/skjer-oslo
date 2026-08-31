@@ -14,7 +14,15 @@ function SavedPage({ savedEventIds, onToggleSaved }: SavedPageProps) {
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
-      <h1 className="text-3xl font-bold">Mine planer</h1>
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold">Mine planer</h1>
+
+        <p className="mt-2 text-gray-600">
+          {savedEvents.length === 1
+            ? "1 arrangement lagret"
+            : `${savedEvents.length} arrangementer lagret`}
+        </p>
+      </div>
 
       {savedEvents.length > 0 ? (
         <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

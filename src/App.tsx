@@ -91,7 +91,15 @@ function App() {
             />
           }
         />
-        <Route path="/events/:id" element={<EventDetailsPage />} />
+        <Route
+          path="/events/:id"
+          element={
+            <EventDetailsPage
+              savedEventIds={savedEventIds}
+              onToggleSaved={toggleSavedEvent}
+            />
+          }
+        />
         <Route
           path="/events"
           element={
