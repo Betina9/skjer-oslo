@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Search } from "lucide-react";
 import EventCard from "../components/EventCard";
 import { events } from "../data/events";
@@ -12,11 +12,19 @@ interface EventsPageProps {
 
 function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
   const [currentPage, setCurrentPage] = useState(1);
-
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<
     EventCategory | "all"
   >("all");
+  const eventsTopRef = useRef<HTMLDivElement>(null);
+  const goToPage = (page: number) => {
+    setCurrentPage(page);
+
+    eventsTopRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
 
   const eventsPerPage = 25;
 
@@ -37,10 +45,14 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
   const currentEvents = filteredEvents.slice(startIndex, endIndex);
 
   const totalPages = Math.ceil(filteredEvents.length / eventsPerPage);
+  const pageNumbers = Array.from(
+    { length: totalPages },
+    (_, index) => index + 1
+  );
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
-      <div className="mb-8">
+      <div ref={eventsTopRef} className="mb-8">
         <p className="text-sm font-semibold uppercase tracking-wide text-red-600">
           Utforsk Oslo
         </p>
@@ -141,15 +153,28 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
             Forrige
           </button>
 
-          <span className="text-sm font-medium text-gray-600">
-            Side {currentPage} av {totalPages}
-          </span>
+          <div className="flex items-center gap-2">
+            {pageNumbers.map((page) => (
+              <button
+                key={page}
+                type="button"
+                onClick={() => goToPage(page)}
+                aria-label={`Gå til side ${page}`}
+                aria-current={currentPage === page ? "page" : undefined}
+                className={`h-10 min-w-10 cursor-pointer rounded-lg px-3 text-sm font-medium transition ${
+                  currentPage === page
+                    ? "bg-red-600 text-white"
+                    : "text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                {page}
+              </button>
+            ))}
+          </div>
 
           <button
             type="button"
-            onClick={() =>
-              setCurrentPage((page) => Math.min(page + 1, totalPages))
-            }
+            onClick={() => goToPage(Math.min(currentPage + 1, totalPages))}
             className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
           >
             Neste
