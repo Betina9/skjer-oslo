@@ -1,32 +1,44 @@
-# React + TypeScript + Vite
+# SkjerOslo
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+SkjerOslo er et frontend-prosjekt laget for å gjøre det enklere å finne arrangementer og aktiviteter i Oslo.
 
-Currently, two official plugins are available:
+Prosjektet er bygget med fokus på en enkel og intuitiv brukeropplevelse, responsivt design og universell utforming.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funksjoner
 
-## React Compiler
+- Utforsk arrangementer i Oslo
+- Søk etter arrangementer og steder
+- Filtrer etter kategori
+- Lagre arrangementer i Mine planer
+- Lagrede arrangementer blir bevart med localStorage
+- Egen detaljside for hvert arrangement
+- Pagination på oversikten over alle arrangementer
+- Responsivt design for mobil, tablet og desktop
+- Tastaturnavigasjon og tilgjengelighetsforbedringer
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Teknologi
 
-## Expanding the Oxlint configuration
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- React Router
+- Lucide React
+- Oxlint
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Universell utforming
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+Jeg har jobbet aktivt med tilgjengelighet i prosjektet, blant annet med:
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- tydelig tastaturfokus
+- semantisk HTML
+- skjermleservennlige labels
+- ARIA der det er relevant
+- logisk heading-struktur
+- tastaturnavigasjon
+
+Prosjektet oppnår 100 i Lighthouse Accessibility på sidene som er testet.
+
+## Om prosjektet
+
+SkjerOslo er laget som et portfolio-prosjekt for å vise hvordan jeg jobber med frontend, UX og universell utforming i React og TypeScript.
