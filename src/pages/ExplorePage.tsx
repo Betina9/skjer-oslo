@@ -73,7 +73,7 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
   return (
     <main>
       <section
-        className="relative overflow-hidden rounded-3xl bg-cover bg-center"
+        className="relative overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="absolute inset-0 bg-black/50" />
@@ -81,7 +81,7 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
         <div className="relative z-10 px-6 py-12 sm:px-10 sm:py-16">
           <div className="mx-auto max-w-7xl px-6 py-16">
             <div className="max-w-2xl">
-              <p className="text-sm font-semibold uppercase tracking-wide text-red-300">
+              <p className="text-sm font-semibold uppercase tracking-wide text-red-200">
                 Oppdag Oslo
               </p>
 
@@ -112,7 +112,7 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
                   placeholder="Søk etter arrangement eller aktivitet..."
                   value={searchTerm}
                   onChange={(event) => setSearchTerm(event.target.value)}
-                  className="w-full rounded-xl border border-gray-200 bg-white py-4 pl-12 pr-5 text-gray-900 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
+                  className="w-full rounded-xl border border-gray-200 bg-white py-4 pl-12 pr-5 text-gray-900 outline-none transition focus:border-gray-500 focus:ring-2 focus:ring-gray-200"
                 />
               </div>
             </div>

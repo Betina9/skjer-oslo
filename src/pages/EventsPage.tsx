@@ -85,7 +85,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
               setSearchTerm(event.target.value);
               setCurrentPage(1);
             }}
-            className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-12 pr-5 text-gray-900 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-100"
+            className="w-full rounded-xl border border-gray-300 bg-white py-3 pl-12 pr-5 text-gray-900 outline-none transition focus:border-gray-500 focus:ring-2 focus:ring-gray-200"
           />
         </div>
 
