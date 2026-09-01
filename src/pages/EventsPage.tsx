@@ -89,7 +89,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
           />
         </div>
 
-        <div className="mt-6 flex flex-wrap gap-3">
+        <div className="mt-6 mb-8 flex flex-wrap gap-3">
           <button
             type="button"
             aria-pressed={selectedCategory === "all"}
