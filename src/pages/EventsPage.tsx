@@ -4,6 +4,7 @@ import EventCard from "../components/EventCard";
 import { events } from "../data/events";
 import type { EventCategory } from "../types/Event";
 import { categoryStyles } from "../data/categories";
+import { LayoutGrid, Music, Utensils, Palette, Trees } from "lucide-react";
 
 interface EventsPageProps {
   savedEventIds: number[];
@@ -49,6 +50,13 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
     { length: totalPages },
     (_, index) => index + 1
   );
+
+  const categoryIcons = {
+    music: Music,
+    food: Utensils,
+    culture: Palette,
+    activity: Trees,
+  };
 
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
@@ -97,33 +105,39 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
               setSelectedCategory("all");
               setCurrentPage(1);
             }}
-            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+            className={`flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
               selectedCategory === "all"
                 ? "bg-gray-950 text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
             }`}
           >
+            <LayoutGrid size={17} aria-hidden="true" />
             Alle
           </button>
 
-          {Object.entries(categoryStyles).map(([category, style]) => (
-            <button
-              key={category}
-              type="button"
-              aria-pressed={selectedCategory === category}
-              onClick={() => {
-                setSelectedCategory(category as EventCategory);
-                setCurrentPage(1);
-              }}
-              className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                selectedCategory === category
-                  ? style.className
-                  : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-              }`}
-            >
-              {style.label}
-            </button>
-          ))}
+          {Object.entries(categoryStyles).map(([category, style]) => {
+            const Icon = categoryIcons[category as EventCategory];
+
+            return (
+              <button
+                key={category}
+                type="button"
+                aria-pressed={selectedCategory === category}
+                onClick={() => {
+                  setSelectedCategory(category as EventCategory);
+                  setCurrentPage(1);
+                }}
+                className={`flex cursor-pointer items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                  selectedCategory === category
+                    ? style.className
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                <Icon size={17} aria-hidden="true" />
+                {style.label}
+              </button>
+            );
+          })}
         </div>
 
         {currentEvents.length > 0 ? (
