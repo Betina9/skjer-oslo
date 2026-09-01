@@ -94,7 +94,7 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
               </p>
             </div>
 
-            <div className="mt-8 max-w-2xl rounded-2xl bg-white/95 p-2 shadow-lg backdrop-blur">
+            <div className="mt-8 w-full rounded-2xl bg-white/95 p-1 shadow-lg backdrop-blur">
               <label htmlFor="event-search" className="sr-only">
                 Søk etter arrangementer
               </label>
@@ -117,7 +117,7 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
               </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3">
+            <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
               {categories.map((category) => (
                 <CategoryButton
                   key={category.value}
@@ -143,7 +143,7 @@ function ExplorePage({ savedEventIds, onToggleSaved }: ExplorePageProps) {
 
           <Link
             to="/events"
-            className="rounded-md font-medium text-blue-600 transition hover:text-red-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+            className="rounded-md font-medium text-blue-600 transition hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Se alle
           </Link>
