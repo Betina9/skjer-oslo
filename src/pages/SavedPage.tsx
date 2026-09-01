@@ -47,7 +47,8 @@ function SavedPage({ savedEventIds, onToggleSaved }: SavedPageProps) {
 
           <Link
             to="/"
-            className="mt-6 inline-flex rounded-xl bg-red-600 px-5 py-3 font-semibold text-white transition hover:bg-red-700"
+            className="mt-6 inline-flex rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700
+"
           >
             Utforsk arrangementer
           </Link>

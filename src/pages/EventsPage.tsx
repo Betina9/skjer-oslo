@@ -53,7 +53,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
   return (
     <main className="mx-auto max-w-7xl px-6 py-10">
       <div ref={eventsTopRef} className="mb-8">
-        <p className="text-sm font-semibold uppercase tracking-wide text-red-600">
+        <p className="text-sm font-semibold uppercase tracking-wide text-blue-600">
           Utforsk Oslo
         </p>
 
@@ -97,7 +97,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
               setSelectedCategory("all");
               setCurrentPage(1);
             }}
-            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
+            className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
               selectedCategory === "all"
                 ? "bg-gray-950 text-white"
                 : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -115,7 +115,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
                 setSelectedCategory(category as EventCategory);
                 setCurrentPage(1);
               }}
-              className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
+              className={`cursor-pointer rounded-xl px-4 py-2 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                 selectedCategory === category
                   ? style.className
                   : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -154,7 +154,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
             type="button"
             disabled={currentPage === 1}
             onClick={() => goToPage(Math.max(currentPage - 1, 1))}
-            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Forrige
           </button>
@@ -167,9 +167,9 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
                 onClick={() => goToPage(page)}
                 aria-label={`Gå til side ${page}`}
                 aria-current={currentPage === page ? "page" : undefined}
-                className={`h-10 min-w-10 cursor-pointer rounded-lg px-3 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
+                className={`h-10 min-w-10 cursor-pointer rounded-lg px-3 text-sm font-medium transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
                   currentPage === page
-                    ? "bg-red-600 text-white"
+                    ? "bg-blue-600 text-white"
                     : "text-gray-700 hover:bg-gray-100"
                 }`}
               >
@@ -182,7 +182,7 @@ function EventsPage({ savedEventIds, onToggleSaved }: EventsPageProps) {
             type="button"
             disabled={currentPage === totalPages}
             onClick={() => goToPage(Math.min(currentPage + 1, totalPages))}
-            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            className="rounded-xl border border-gray-300 px-4 py-2 font-medium text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
           >
             Neste
           </button>

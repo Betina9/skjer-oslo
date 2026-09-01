@@ -35,7 +35,7 @@ function EventDetailsPage({
     <main className="mx-auto max-w-7xl px-6 py-10">
       <Link
         to="/"
-        className="mb-6 inline-flex items-center gap-2 rounded-md text-sm font-medium text-gray-600 transition hover:text-gray-950 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+        className="mb-6 inline-flex items-center gap-2 rounded-md text-sm font-medium text-gray-600 transition hover:text-gray-950 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       >
         <ArrowLeft size={18} aria-hidden="true" />
         Tilbake til arrangementer
@@ -66,9 +66,9 @@ function EventDetailsPage({
               ? `Fjern ${event.title} fra Mine planer`
               : `Lagre ${event.title} i Mine planer`
           }
-          className={`mt-4 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
+          className={`mt-4 inline-flex cursor-pointer items-center gap-2 rounded-xl border px-4 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
             isSaved
-              ? "border-red-200 bg-red-50 text-red-600"
+              ? "border-red-200 bg-red-50 text-blue-600"
               : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
           }`}
         >
@@ -137,7 +137,8 @@ function EventDetailsPage({
               href={event.ticketUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex w-full justify-center rounded-xl bg-red-600 px-6 py-3 font-semibold text-white transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto"
+              className="inline-flex w-full justify-center rounded-xl bg-blue-600 px-6 py-3 font-semibold text-white transition hover:bg-blue-700
+ focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto"
             >
               Kjøp billett
               <span className="sr-only"> (åpnes i ny fane)</span>

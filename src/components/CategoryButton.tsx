@@ -23,7 +23,7 @@ function CategoryButton({
       className={`
         flex cursor-pointer items-center gap-2 rounded-xl border px-5 py-3
         text-sm font-medium transition-all hover:-translate-y-0.5
-        focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2
+        focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
         ${
           isActive
             ? `${color} border-transparent shadow-sm`

@@ -38,8 +38,8 @@ function EventCard({ event, isSaved, onToggleSaved }: EventCardProps) {
               ? `Fjern ${event.title} fra mine planer`
               : `Lagre ${event.title} i mine planer`
           }
-          className={`absolute right-3 top-3 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white/90 text-lg shadow-sm backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 ${
-            isSaved ? "text-red-600" : "text-gray-700"
+          className={`absolute right-3 top-3 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full bg-white/90 text-lg shadow-sm backdrop-blur hover:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+            isSaved ? "text-blue-600" : "text-gray-700"
           }`}
         >
           {isSaved ? "♥" : "♡"}
